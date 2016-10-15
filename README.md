@@ -1,5 +1,7 @@
 # sprint
 
+[![Build Status](https://travis-ci.org/suyash/sprint.svg?branch=master)](https://travis-ci.org/suyash/sprint)
+
 golang like scan, scanln, print and println functions for C++
 
 Just include `sprint.hh` to use.
