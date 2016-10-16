@@ -64,7 +64,11 @@ const char* str =
 
 void benchpstrings() {
 	uint64_t runs = 10;
+#ifdef __APPLE__
+	uint64_t iter = 25000;
+#else
 	uint64_t iter = 250000;
+#endif
 	double t_pf = 0, t_p = 0, t_pl = 0, t_c = 0;
 
 	for (uint64_t x = 0; x < runs; x++) {
