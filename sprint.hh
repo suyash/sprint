@@ -111,15 +111,18 @@ int fscan(FILE* stream, T... args) {
 	return fscanf(stream, buf, args...);
 }
 
-// fscanln (empty argument specialization), scans until a newline and returns 0
-int fscanln(FILE* stream) {
+void fscanskipln(FILE* stream) {
 	while (true) {
 		char ch = getc(stream);
 		if (ch == EOF || ch == '\n') break;
 		// TODO: check if we need
 		// https://sourcegraph.com/github.com/golang/go@838eaa738f2bc07c3706b96f9e702cb80877dfe1/-/blob/src/fmt/scan.go#L1058:8
 	}
+}
 
+// fscanln (empty argument specialization), scans until a newline and returns 0
+int fscanln(FILE* stream) {
+	fscanskipln(stream);
 	return 0;
 }
 
@@ -127,14 +130,7 @@ int fscanln(FILE* stream) {
 template <typename... T>
 int fscanln(FILE* stream, T... args) {
 	int v = fscan(stream, args...);
-
-	while (true) {
-		char ch = getc(stream);
-		if (ch == EOF || ch == '\n') break;
-		// TODO: check if we need
-		// https://sourcegraph.com/github.com/golang/go@838eaa738f2bc07c3706b96f9e702cb80877dfe1/-/blob/src/fmt/scan.go#L1058:8
-	}
-
+	fscanskipln(stream);
 	return v;
 }
 
