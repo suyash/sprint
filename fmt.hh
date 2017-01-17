@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef __clang__
 
 // _fmt is a macro that will give the format for a variable
