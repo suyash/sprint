@@ -77,4 +77,4 @@ sprint_bench.out : sprint_bench.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -lpthread -L$(BENCHMARK_BUILD_DIR)/lib -lbenchmark -o $@
 
 sprint_bench : sprint_bench.out
-	./$< --benchmark_out_format=console 2> /dev/null < fixtures/int.in
+	./$< --benchmark_out_format=console 2> /dev/null

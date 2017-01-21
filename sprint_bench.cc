@@ -1,6 +1,7 @@
 #include <benchmark/benchmark_api.h>
 
 #include <iostream>
+#include <fstream>
 
 #include "sprint.hh"
 
@@ -96,41 +97,45 @@ static void PrintStringCerrWithFlush(benchmark::State& state) {
 
 BENCHMARK(PrintStringCerrWithFlush);
 
-static void ScanIntScanf(benchmark::State& state) {
+static void ScanIntFscanf(benchmark::State& state) {
 	int64_t a = 0, b = 0, c = 0;
+	FILE* file = fopen("fixtures/int.in", "r");
 	while (state.KeepRunning()) {
-		scanf("%ld %ld %ld", &a, &b, &c);
+		fscanf(file, "%ld %ld %ld", &a, &b, &c);
 	}
 }
 
-BENCHMARK(ScanIntScanf);
+BENCHMARK(ScanIntFscanf);
 
-static void ScanIntScan(benchmark::State& state) {
+static void ScanIntFscan(benchmark::State& state) {
 	int64_t a = 0, b = 0, c = 0;
+	FILE* file = fopen("fixtures/int.in", "r");
 	while (state.KeepRunning()) {
-		scan(&a, &b, &c);
+		fscan(file, &a, &b, &c);
 	}
 }
 
-BENCHMARK(ScanIntScan);
+BENCHMARK(ScanIntFscan);
 
-static void ScanIntScanln(benchmark::State& state) {
+static void ScanIntFscanln(benchmark::State& state) {
 	int64_t a = 0, b = 0, c = 0;
+	FILE* file = fopen("fixtures/int.in", "r");
 	while (state.KeepRunning()) {
-		scanln(&a, &b, &c);
+		fscanln(file, &a, &b, &c);
 	}
 }
 
-BENCHMARK(ScanIntScanln);
+BENCHMARK(ScanIntFscanln);
 
-static void ScanIntCin(benchmark::State& state) {
+static void ScanIntIfstream(benchmark::State& state) {
 	int64_t a = 0, b = 0, c = 0;
+	std::ifstream stream("fixtures/int.in");
 	while (state.KeepRunning()) {
-		std::cin >> a >> b >> c;
-		std::cin.sync();
+		stream >> a >> b >> c;
+		stream.sync();
 	}
 }
 
-BENCHMARK(ScanIntCin);
+BENCHMARK(ScanIntIfstream);
 
 BENCHMARK_MAIN();
