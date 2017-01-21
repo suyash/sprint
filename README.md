@@ -41,6 +41,29 @@ ret_type func_name(T... args) {
 }
 ```
 
+## Benchmarks
+
+From: https://travis-ci.org/suyash/sprint/jobs/193962143
+
+```
+Benchmark                            Time           CPU Iterations
+------------------------------------------------------------------
+PrintIntFprintf                    662 ns        651 ns    1120266
+PrintIntFprint                     726 ns        726 ns     986147
+PrintIntFprintln                   813 ns        803 ns     860802
+PrintIntCerrWithoutFlush          1781 ns       1760 ns     396888
+PrintIntCerrWithFlush             1619 ns       1608 ns     403087
+PrintStringFprintf                1087 ns       1068 ns     663231
+PrintStringFprint                 1005 ns        998 ns     608755
+PrintStringFprintln               1094 ns       1088 ns     688807
+PrintStringCerrWithoutFlush        792 ns        782 ns     891838
+PrintStringCerrWithFlush           756 ns        743 ns     889423
+ScanIntFscanf                      664 ns        660 ns    1179087
+ScanIntFscan                       733 ns        729 ns     880432
+ScanIntFscanln                     734 ns        717 ns     935005
+ScanIntIfstream                    614 ns        607 ns    1173745
+```
+
 ## TODO
 
 - minified builds for quick embedding
