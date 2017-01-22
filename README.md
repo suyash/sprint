@@ -43,7 +43,7 @@ ret_type func_name(T... args) {
 
 ## Benchmarks
 
-From: https://travis-ci.org/suyash/sprint/jobs/193962143
+From: https://travis-ci.org/suyash/sprint/jobs/193965648
 
 ```
 Benchmark                            Time           CPU Iterations
